@@ -335,8 +335,13 @@ public final class IDES {
                                        final boolean isEncrypt){
 
         byte[] mKey = null;
+        if(key != null && key.length == 8){
+            mKey = new byte[24];
+            System.arraycopy(key,0,mKey,0,8);
+            System.arraycopy(key,0,mKey,8,8);
+            System.arraycopy(key,0,mKey,16,8);
 
-        if(key != null && key.length == 16){
+        }else if(key != null && key.length == 16){
             mKey = new byte[24];
             System.arraycopy(key,0,mKey,0,8);
             System.arraycopy(key,8,mKey,8,8);
