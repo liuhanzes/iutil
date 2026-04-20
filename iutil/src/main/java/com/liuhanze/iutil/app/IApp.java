@@ -94,6 +94,8 @@ public final class IApp {
         private boolean isSystem;
         private long firstInstallTime;
 
+        private long lastUpdateTime;
+
         public Drawable getIcon() {
             return icon;
         }
@@ -158,6 +160,14 @@ public final class IApp {
             this.firstInstallTime = firstInstallTime;
         }
 
+        public long getLastUpdateTime() {
+            return lastUpdateTime;
+        }
+
+        public void setLastUpdateTime(long lastUpdateTime) {
+            this.lastUpdateTime = lastUpdateTime;
+        }
+
         /**
          * @param name        名称
          * @param icon        图标
@@ -168,7 +178,7 @@ public final class IApp {
          * @param isSystem    是否系统应用
          */
         public AppInfo(String packageName, String name, Drawable icon, String packagePath,
-                       String versionName, int versionCode, boolean isSystem,long firstInstallTime) {
+                       String versionName, int versionCode, boolean isSystem,long firstInstallTime,long lastUpdateTime) {
             this.setName(name);
             this.setIcon(icon);
             this.setPackageName(packageName);
@@ -177,6 +187,7 @@ public final class IApp {
             this.setVersionCode(versionCode);
             this.setSystem(isSystem);
             this.setFirstInstallTime(firstInstallTime);
+            this.setLastUpdateTime(lastUpdateTime);
         }
 
         @Override
@@ -190,6 +201,7 @@ public final class IApp {
                     ", versionCode=" + versionCode +
                     ", isSystem=" + isSystem +
                     ", firstInstallTime=" + firstInstallTime +
+                    ", lastUpdateTime=" + lastUpdateTime +
                     '}';
         }
     }
@@ -241,8 +253,9 @@ public final class IApp {
         String versionName = pi.versionName;
         int versionCode = pi.versionCode;
         long firstInstallTime = pi.firstInstallTime;
+        long lastUpdateTime = pi.lastUpdateTime;
         boolean isSystem = (ApplicationInfo.FLAG_SYSTEM & ai.flags) != 0;
-        return new AppInfo(packageName, name, icon, packagePath, versionName, versionCode, isSystem,firstInstallTime);
+        return new AppInfo(packageName, name, icon, packagePath, versionName, versionCode, isSystem,firstInstallTime,lastUpdateTime);
     }
 
     /**
